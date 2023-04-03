@@ -1,0 +1,5 @@
+wallet/
+*.json
+*.ipynb
+wiejska_online/
+__pycache__/
