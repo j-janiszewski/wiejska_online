@@ -3,7 +3,6 @@ import tweepy
 import cryptography
 import os
 import yagmail
-import tweepy
 from models import Base
 
 
