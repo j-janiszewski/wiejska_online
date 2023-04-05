@@ -1,6 +1,8 @@
 name: Scrape polish parliament api
 
-on: workflow_dispatch
+on:
+  schedule:
+    - cron: "5 21 * * 0,2,4"
 
 jobs:
   build:

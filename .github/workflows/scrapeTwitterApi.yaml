@@ -1,6 +1,8 @@
 name: Scrape twitter api
 
-on: workflow_dispatch
+on:
+  schedule:
+    - cron: "5 22 * * 0,2,4"
 
 jobs:
   build:
@@ -16,7 +18,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Scrape account of politicians present in database
+      - name: Scrape twitter accounts of politicians present in database
         run: |
           python scrape_twitter_api.py
         env:
