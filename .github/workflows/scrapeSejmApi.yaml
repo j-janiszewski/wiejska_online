@@ -18,7 +18,7 @@ jobs:
           pip install -r requirements.txt
       - name: Scrape polish parliament api and save results to database
         run: |
-          python .\scrape_sejm_api.py
+          python scrape_sejm_api.py
         env:
           GMAIL_NOTIFIER_PASSWORD: ${{ secrets.GMAIL_NOTIFIER_PASSWORD }}
           WIEJSKA_ONLINE_CS: ${{ secrets.WIEJSKA_ONLINE_CS }}
