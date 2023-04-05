@@ -19,7 +19,7 @@ def decrypt_file(file_path: str, output_location: str) -> None:
         file_path (str): encrypted file path
         output_location (str): path where decrypted file should be placed
     """
-    fernet = cryptography.Fernet(os.environ["WIEJSKA_ONLINE_ENCRYPTION_KEY"])
+    fernet = cryptography.Fernet(os.environ["WIEJSKA_ONLINE_WALLET_ENCRYPTION_KEY"])
     with open(file_path, "rb") as enc_file:
         encrypted = enc_file.read()
     decrypted = fernet.decrypt(encrypted)
