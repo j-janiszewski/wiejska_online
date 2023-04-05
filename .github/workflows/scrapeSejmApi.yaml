@@ -1,0 +1,28 @@
+name: Scrape polish parliament api
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Scrape polish parliament api and save results to database
+        run: |
+          python scrape_sejm_api.py
+        env:
+          GMAIL_NOTIFIER_PASSWORD: ${{ secrets.GMAIL_NOTIFIER_PASSWORD }}
+          WIEJSKA_ONLINE_CS: ${{ secrets.WIEJSKA_ONLINE_CS }}
+          WIEJSKA_ONLINE_PASSWORD: ${{ secrets.WIEJSKA_ONLINE_PASSWORD }}
+          WIEJSKA_ONLINE_USER_NAME: ${{ secrets.WIEJSKA_ONLINE_USER_NAME }}
+          WIEJSKA_ONLINE_WALLET_ENCRYPTION_KEY: ${{ secrets.WIEJSKA_ONLINE_WALLET_ENCRYPTION_KEY }}
+          WIEJSKA_ONLINE_WALLET_PASSWORD: ${{ secrets.WIEJSKA_ONLINE_WALLET_PASSWORD }}
