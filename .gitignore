@@ -1,5 +1,5 @@
 wallet/
 *.json
 *.ipynb
-wiejska_online/
+wiejska_scraper/
 __pycache__/

@@ -7,6 +7,8 @@ If new politician will appear notification is generated to check if he/she has a
 import requests
 from models import Member, Politician, Club, Transfer
 from sqlalchemy.sql.functions import now
+from distinctipy import distinctipy
+import matplotlib.colors
 
 from config import db_session, send_notification
 
@@ -23,14 +25,16 @@ session = db_session(create_tables=True)
 
 # checking if new clubs appeared
 clubs = requests.get(API_URL + f"{current_term}/clubs").json()
+existing_clubs = session.query(Club).all()
+existing_clubs_colors = [matplotlib.colors.to_rgb( club.color) for club in existing_clubs]
 for club in clubs:
-    existing_club = (
-        session.query(Club).filter_by(id=club["id"], term=current_term).first()
-    )
-    if existing_club is None:  # adding new Club
-        session.add(Club(id=club["id"], name=club["name"], term=current_term))
-    elif existing_club.name != club["name"]:  # Existing club has new name
-        existing_club.name = club["name"]
+    existing_club = [c for c in existing_clubs if c.id== club["id"] ]
+    if not existing_club:  # adding new Club
+        new_color = distinctipy.get_colors(1, existing_clubs_colors)
+        session.add(Club(id=club["id"], name=club["name"], term=current_term, color= new_color))
+        existing_clubs_colors.append(new_color)
+    elif existing_club[0].name != club["name"]:  # Existing club has a new name
+        existing_club[0].name = club["name"]
 
 
 members = requests.get(API_URL + f"{current_term}/MP").json()
