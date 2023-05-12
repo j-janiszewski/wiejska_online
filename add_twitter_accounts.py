@@ -36,7 +36,7 @@ if args["file"]:
     with open(args["file"], "r") as f:
         accounts_to_add = json.load(f)
 elif args["screen_name"] and args["politician_id"]:
-    accounts_to_add = [[args["screen_name"], args["politician_id"]]]
+    accounts_to_add = [[args["politician_id"], args["screen_name"]]]
 else:
     raise RuntimeError(
         "You must either specify json file or id and screen name of single politician"
@@ -58,7 +58,7 @@ with db_session() as session:
             is_active=True,
             politician_id=politician.id,
         )
-        politician.twitter_account = [twitter_account]
+        politician.twitter_account.append(twitter_account)
     try:
         session.commit()
     except:
