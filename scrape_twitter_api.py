@@ -1,3 +1,10 @@
+"""
+Script that scrapes twitter API.
+Politicians followers count and new tweets are registered in database.
+
+If politician twitter acoount is inactive notification is generated.
+If twitter api rate limit is exceeded notification is generated.
+"""
 from config import twitter_api, db_session, send_notification
 from models import Politician, Tweet, FollowersNumber
 import sqlalchemy

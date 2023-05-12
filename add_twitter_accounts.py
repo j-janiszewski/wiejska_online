@@ -1,3 +1,7 @@
+"""
+Script that registers new politician twitter account in database.
+Detailed description of usage is can be displayed by running "python add_twitter_accounts.py --help "
+"""
 import argparse
 import json
 from models import Politician, TwitterAccount

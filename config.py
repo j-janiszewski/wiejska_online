@@ -1,3 +1,6 @@
+"""
+Module with functions used by scraping scripts.
+"""
 import sqlalchemy
 import tweepy
 from cryptography.fernet import Fernet

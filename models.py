@@ -1,3 +1,6 @@
+"""
+Module with SQLAlchemy ORM models definitions.
+"""
 from sqlalchemy import Column, ForeignKey, ForeignKeyConstraint, Identity
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Integer, Date, Boolean, DateTime

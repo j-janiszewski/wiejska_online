@@ -1,3 +1,9 @@
+"""
+Script that scrapes polish parliament API.
+New members, clubs and transfers between clubs are registered in database.
+
+If new politician will appear notification is generated to check if he/she has a twitter account.
+"""
 import requests
 from models import Member, Politician, Club, Transfer
 from sqlalchemy.sql.functions import now
@@ -76,7 +82,7 @@ for member in members:
                 last_name=member["lastName"],
             )
             send_notification(
-                "WIEJSKA ONLINE: New politician appared",
+                "WIEJSKA ONLINE: New politician appeared",
                 f"Check if {new_politician.first_name} {new_politician.last_name} from {new_member.club_id} has twitter account.",
             )
 
