@@ -95,10 +95,10 @@ for member in members:
                 second_name=member.get("secondName", None),
                 last_name=member["lastName"],
             )
-            send_notification(
-                "WIEJSKA ONLINE: New politician appeared",
-                f"Check if {new_politician.first_name} {new_politician.last_name} from {new_member.club_id} has twitter account.",
-            )
+            # send_notification(
+            #     "WIEJSKA ONLINE: New politician appeared",
+            #     f"Check if {new_politician.first_name} {new_politician.last_name} from {new_member.club_id} has twitter account.",
+            # )
 
             new_member.politician = new_politician
         else:
