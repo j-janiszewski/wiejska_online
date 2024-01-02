@@ -26,6 +26,7 @@ session = db_session(create_tables=True)
 # checking if new clubs appeared
 clubs = requests.get(API_URL + f"{current_term}/clubs").json()
 existing_clubs = session.query(Club).filter_by(term=current_term).all()
+print(existing_clubs)
 existing_clubs_colors = [
     matplotlib.colors.to_rgb(club.color) for club in existing_clubs
 ]
@@ -40,6 +41,7 @@ for club in clubs:
             Club(id=club["id"], name=club["name"], term=current_term, color=new_color)
         )
         existing_clubs_colors.append(new_color)
+        print(existing_clubs_colors)
     elif existing_club[0].name != club["name"]:  # Existing club has a new name
         existing_club[0].name = club["name"]
 
