@@ -32,14 +32,16 @@ existing_clubs_colors = [
 for club in clubs:
     existing_club = [c for c in existing_clubs if c.id == club["id"]]
     if not existing_club:  # adding new Club
-        if len(existing_clubs_colors) == 0:
-            new_color = distinctipy.get_colors(1)
-        else:
-            new_color = distinctipy.get_colors(1, existing_clubs_colors)
+        # if len(existing_clubs_colors) == 0:
+        #     new_color = distinctipy.get_colors(1)
+        # else:
+        #     new_color = distinctipy.get_colors(1, existing_clubs_colors)
         session.add(
-            Club(id=club["id"], name=club["name"], term=current_term, color=new_color)
+            Club(
+                id=club["id"], name=club["name"], term=current_term
+            )  # , color=new_color)
         )
-        existing_clubs_colors.append(new_color)
+        # existing_clubs_colors.append(new_color)
     elif existing_club[0].name != club["name"]:  # Existing club has a new name
         existing_club[0].name = club["name"]
 
